@@ -1,0 +1,11 @@
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  /*  <main className="dashboard-layout">  </main> */
+
+  .MenuList{
+    list-style-type: none;
+    align-self: start;
+  }
