@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MainMenu from "./Menu";
 
 function ContactProfile() {
   const [contact, setContact] = useState({});
   const { id } = useParams();
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     console.log("fetching id: ", id);
@@ -14,6 +16,10 @@ function ContactProfile() {
       .then(setContact);
   }, []);
 
+
+  const handleEditClick = () => {
+    navigate(`/update/${id}`);
+  };
   return (
     <>
       <main className="dashboard-layout">
@@ -28,6 +34,7 @@ function ContactProfile() {
             {contact.street}, {contact.city}
           </p>
           {/* TODO: render map of where */}
+          <button onClick={handleEditClick}>Edit</button>
         </div>
       </main>
 

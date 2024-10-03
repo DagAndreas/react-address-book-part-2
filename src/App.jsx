@@ -6,6 +6,7 @@ import MainMenu from "./components/Menu";
 import { Route, Router, Routes, useLocation } from "react-router-dom";
 import ContactsList from "./components/ContactsList";
 import ContactProfile from "./components/ContactProfile";
+import UpdateForm from "./components/UpdateForm";
 
 //api
 // https://boolean-uk-api-server.fly.dev
@@ -50,7 +51,7 @@ function App() {
 
           <Route path="/contact/:id" element={<ContactProfile />} />
           
-          {/* <Route path="/delete" element={<ContactProfile />} /> */}
+          <Route path="/update/:id" element={<UpdateForm/>} />
         </Routes>
       </ContactsContext.Provider>
     </>
