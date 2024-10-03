@@ -17,16 +17,20 @@ function App() {
 
   //TODO: fetch contacts?
   // https://boolean-uk-api-server.fly.dev/dagandreas/contact
-  useEffect(() => {
+  const fetchContacts = () => {
     fetch("https://boolean-uk-api-server.fly.dev/dagandreas/contact")
       .then((res) => res.json())
-      .then(setContacts);
-  }, []);
+      .then(setContacts)
+      .catch((error) => console.error('Error fetching contacts:', error));
+  };
 
+  useEffect(() => {
+    fetchContacts();
+  }, []);
   return (
     <>
       <ContactsContext.Provider
-        value={{ contacts, setContacts }}
+        value={{ contacts, setContacts, fetchContacts }}
       >
         <Routes>
           <Route path="/" element={<ContactsList />} />
@@ -34,6 +38,8 @@ function App() {
           <Route path="/new" element={<ContactsForm />} />
 
           <Route path="/contact/:id" element={<ContactProfile />} />
+          
+          {/* <Route path="/delete" element={<ContactProfile />} /> */}
         </Routes>
       </ContactsContext.Provider>
     </>

@@ -10,6 +10,9 @@ function MainMenu() {
           <li>
             <a href="/new">Add New Contact</a>
           </li>
+          {/* <li>
+            <a href="/delete">Delete Contact</a>
+          </li> */}
         </ul>
       </div>
     </>

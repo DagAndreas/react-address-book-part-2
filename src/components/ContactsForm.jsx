@@ -8,7 +8,6 @@ function ContactsForm() {
   const [street, setStreet] = useState(null);
   const [city, setCity] = useState(null);
 
-
   const navigate = useNavigate();
 
   const updateOnTextbox = (event, setter) => {
@@ -27,7 +26,6 @@ function ContactsForm() {
       return;
     }
 
-
     // first create the person
     const person = {};
     person.firstName = firstName;
@@ -36,25 +34,23 @@ function ContactsForm() {
     person.city = city;
 
     // submit the request to the api
-    const path = "https://boolean-uk-api-server.fly.dev/dagandreas/contact"
+    const path = "https://boolean-uk-api-server.fly.dev/dagandreas/contact";
 
     fetch(path, {
-      method:'POST',
-      headers:{
-        'Content-Type' : 'application/json'
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(person)
+      body: JSON.stringify(person),
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success in contactsform: ', data)
-      navigate("/");
-    })
-    .catch((error) => {
-      console.error('Error in contactsform: ', error)
-    })
-
-
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success in contactsform: ", data);
+      })
+      .then(navigate("/"))
+      .catch((error) => {
+        console.error("Error in contactsform: ", error);
+      });
   };
 
   return (
