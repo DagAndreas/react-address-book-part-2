@@ -12,22 +12,20 @@ function ContactsListItem(props) {
     navigate(`/contact/${contact.id}`);
   };
 
-  const handleDeleteClick = () => {
+  const handleDeleteClick = async () => {
     const path =
       "https://boolean-uk-api-server.fly.dev/dagandreas/contact/" + contact.id;
+    try {
 
-    fetch(path, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success in contactlistitem: ", data);
-        fetchContacts();
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Error in contactlistitem: ", error);
-      });
+      const response = await fetch(path, { method: "DELETE" });
+      const data = await response.json();
+      console.log("Success in contactslistitem: ", data);
+
+      await fetchContacts();
+      navigate("/");
+    } catch (error) {
+      console.error("Error in contactslistitem async: ", error);
+    }
   };
 
   return (

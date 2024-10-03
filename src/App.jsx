@@ -3,7 +3,7 @@ import "./App.css";
 import { createContext } from "react";
 import ContactsForm from "./components/ContactsForm";
 import MainMenu from "./components/Menu";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Router, Routes, useLocation } from "react-router-dom";
 import ContactsList from "./components/ContactsList";
 import ContactProfile from "./components/ContactProfile";
 
@@ -14,6 +14,9 @@ const ContactsContext = createContext();
 
 function App() {
   const [contacts, setContacts] = useState([]);
+
+  const location = useLocation();
+
 
   //TODO: fetch contacts?
   // https://boolean-uk-api-server.fly.dev/dagandreas/contact
@@ -27,6 +30,14 @@ function App() {
   useEffect(() => {
     fetchContacts();
   }, []);
+
+  useEffect(() => {
+    // Check if the user is navigating to the root path
+    if (location.pathname === "/") {
+      fetchContacts();
+    }
+  }, [location.pathname]);
+
   return (
     <>
       <ContactsContext.Provider

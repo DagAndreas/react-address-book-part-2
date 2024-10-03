@@ -20,22 +20,18 @@ function ContactsForm() {
   //TODO: push the new person up into the api
   const submitSurvey = (event) => {
     event.preventDefault();
-
+  
     if (!firstName || !lastName || !street || !city) {
       console.error("All fields are required");
       return;
     }
-
+  
     // first create the person
-    const person = {};
-    person.firstName = firstName;
-    person.lastName = lastName;
-    person.street = street;
-    person.city = city;
-
+    const person = { firstName, lastName, street, city };
+  
     // submit the request to the api
     const path = "https://boolean-uk-api-server.fly.dev/dagandreas/contact";
-
+  
     fetch(path, {
       method: "POST",
       headers: {
@@ -46,12 +42,14 @@ function ContactsForm() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success in contactsform: ", data);
+        // Navigate only after the API request completes successfully
+        navigate("/");
       })
-      .then(navigate("/"))
       .catch((error) => {
-        console.error("Error in contactsform: ", error);
+        console.error("Error in contactsform: " + error);
       });
   };
+  
 
   return (
     <>
