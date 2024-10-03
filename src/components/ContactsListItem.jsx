@@ -4,13 +4,14 @@ function ContactsListItem(props) {
   return (
     <>
       <div>
-        <h2>{contact.firstName} {contact.lastName}</h2>
-        <p>{contact.street}, {contact.city}</p>
-        {/* render map of where */}
-        
+        <a href={"/contact/" + contact.id}>
+          <h3>
+            {contact.firstName} {contact.lastName}
+          </h3>
+        </a>
       </div>
     </>
   );
 }
 
-export default ContactsListItem
+export default ContactsListItem;

@@ -13,6 +13,7 @@ function ContactsList() {
           <MainMenu />
         </div>
         <div>
+          <h2>Contacts:</h2>
           <ul>
             {/* map over contacts and create items */}
              {contacts.map((person, index) => (
